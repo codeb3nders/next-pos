@@ -1,6 +1,4 @@
-import { Document } from "mongoose";
-
-export interface AccountInterface extends Document {
+export interface AccountInterface {
   id: string;
   firstName: string;
   lastName: string;
