@@ -24,9 +24,7 @@ const LoginForm = () => {
 
     try {
       const response = await axios.post("http://localhost:3000/api/login", { email, password });
-      console.log("RESPONSE", response)
       const {  data } = response;
-      console.log("TOOOOOOO", data)
       localStorage.setItem("token", data);
       setErrorMessage("");
       // router.push("/dashboard");

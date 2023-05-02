@@ -21,7 +21,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     req,
     res,
     Account,
-    true,
+    false,
     token
   );
   const accounts = await queryService.get();
