@@ -13,12 +13,16 @@ import { headers } from "next/headers";
 mongoose.connection.readyState !== 1 && connectMongo();
 
 export async function GET(req: NextRequest, res: NextApiResponse) {
+  const headersInstance = headers();
+  const authorization = headersInstance.get("authorization") || "";
+  const token = authorization.split(" ")[1];
   const response = new responseHandler<AccountInterface[] | void>();
   const queryService = new QueryService<AccountInterface>(
     req,
     res,
     Account,
-    false
+    true,
+    token
   );
   const accounts = await queryService.get();
   return response[200](accounts);
@@ -50,14 +54,11 @@ export async function POST(
     req,
     res,
     Account,
-    false,
+    true,
     token
   );
 
-  try {
-    const createAccount = (await account.create(value)) as AccountInterface;
-    return response[201](createAccount);
-  } catch (error: any) {
-    return response[409](error.message);
-  }
+  return await account.create(value)
+
+  
 }

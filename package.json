@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "unit:test": "./node_modules/.bin/nyc --reporter=lcov --reporter=text ./node_modules/.bin/mocha --recursive -r ts-node/register -r tsconfig-paths/register './tests/**/*.spec.ts'",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -15,6 +16,7 @@
     "@types/react-dom": "18.2.1",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
+    "chai": "^4.3.7",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
     "joi": "^17.9.2",
@@ -31,8 +33,47 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/chai": "^4.3.5",
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/mongoose": "^5.11.97"
+    "@types/mocha": "^10.0.1",
+    "@types/mongoose": "^5.11.97",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "**/configs/*.ts",
+      "**/data/*.ts",
+      "**/*.d.ts",
+      "**/enums/**/*.ts",
+      "**/models/**/*.ts",
+      "**/entities/**/*.ts",
+      "**/factories/**/*.ts",
+      "**/repositories/**/*.ts",
+      "**/lib/secrets/*.ts",
+      "**/lib/db/*.ts",
+      "**/lib/utils/*.ts",
+      "**/lib/request/*.ts",
+      "**/lib/schemas/*.ts"
+    ],
+    "reporter": [
+      "text"
+    ],
+    "all": true,
+    "check-coverage": true,
+    "branches": 90,
+    "lines": 90,
+    "functions": 90,
+    "statements": 90
   }
 }

@@ -1,4 +1,4 @@
-export interface AccountInterface {
+export interface AccountInterface  {
   id: string;
   firstName: string;
   lastName: string;

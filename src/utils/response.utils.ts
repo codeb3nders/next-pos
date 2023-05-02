@@ -3,7 +3,7 @@ import { UNAUTHORIZED, BAD_REQUEST, CONFLICT } from "../constants";
 import { NextResponse } from "next/server";
 
 export class responseHandler<E> {
-  200(data: E | void) {
+  200(data: any | void) {
     return NextResponse.json(data, { status: 200 });
   }
 
@@ -15,7 +15,7 @@ export class responseHandler<E> {
     return NextResponse.json({ error: message || CONFLICT }, { status: 409 });
   }
 
-  400(message: string | void) {
+  400(message: string | void): NextResponse {
     return NextResponse.json(
       { error: message || BAD_REQUEST },
       { status: 400 }
