@@ -8,19 +8,21 @@ import { verifyToken } from "@/utils/auth";
 export default function DashboardPage() {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    console.log("Token", token);
     
-  //   if (!token) {
-  //     router.push("/login");
-  //   }
-  //   const decodedToken = verifyToken(token!);
-  //   console.log({decodedToken});
-  //   // if (!decodedToken) {
-  //   //   router.push("/login");
-  //   //   return;
-  //   // }
-  // }, []);
+    if (!token) {
+   //   router.push("/login");
+    }
+    const decodedToken = verifyToken(token!);
+    console.log({decodedToken});
+    // if (!decodedToken) {
+    //   router.push("/login");
+    //   return;
+    // }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

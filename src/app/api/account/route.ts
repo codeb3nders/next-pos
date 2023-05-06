@@ -54,11 +54,9 @@ export async function POST(
     req,
     res,
     Account,
-    true,
+    false,
     token
   );
 
-  return await account.create(value)
-
-  
+  return await account.create(value);
 }
