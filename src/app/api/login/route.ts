@@ -28,8 +28,6 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
     businessEmail: email,
   })) as AccountInterface;
 
-  console.log("email", email, { user });
-
   if (!user || !(await user.comparePassword(password))) {
     return response[401]();
   }
